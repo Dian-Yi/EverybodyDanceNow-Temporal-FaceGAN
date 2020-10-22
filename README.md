@@ -65,7 +65,7 @@ This step is completed in Ubuntu 16.04
 
 * If you break the traning and want to continue last training, set `load_pretrain = './checkpoints/target/` in `./src/config/train_opt.py`
 
-* Run `transfer.py` and get results in `./result`
+* Run `transfer_temporal.py` and get results in `./result`
 
 #### Face enhancement network
 
