@@ -25,6 +25,7 @@ def gao(idx):
 		return [-1, -1, -1, -1]
 
 	anno = anno[0]
+	anno.pop('person_id')
 	for key in anno:
 		anno[key] = np.array(anno[key]).reshape(-1, 3).astype(np.float)
 		anno[key][:,  0] -= 420
