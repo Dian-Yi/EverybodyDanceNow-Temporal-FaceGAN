@@ -166,13 +166,14 @@ f = open(train_dir.joinpath('scale.txt'),'w')
 f.write( ' '.join([str(scale[0, 0]), str(scale[-1, 0]), str(smin), str(smax)]) )
 
 from multiprocessing import Pool
-pool = Pool(10)
-head_coor = pool.map(gao, sorted(all_index))
-head_coor = torch.tensor(head_coor)
-print (head_coor)
-torch.save(head_coor, str(train_dir.joinpath('face_crop_coor.torch')))
+if __name__ == '__main__':
+	pool = Pool(10)
+	head_coor = pool.map(gao, sorted(all_index))
+	head_coor = torch.tensor(head_coor)
+	print (head_coor)
+	torch.save(head_coor, str(train_dir.joinpath('face_crop_coor.torch')))
 
-# for index in all_index:
-# 	gao(index)
+	# for index in all_index:
+	# 	gao(index)
 
 	
