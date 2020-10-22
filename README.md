@@ -31,7 +31,8 @@ Run
 and 
 
 `./build/examples/openpose/openpose.bin --video 2.mp4 --write_json anno_2/ --display 0 --render_pose 0 --face --hand`
-if in windows: replace ./build/examples/openpose/openpose.bin as bin\OpenPoseDemo.exe, and download some models frome opense
+
+* if in windows: replace ./build/examples/openpose/openpose.bin as bin\OpenPoseDemo.exe, and download some models frome openPose
 
 to get the pose annotation from video
 
