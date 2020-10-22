@@ -165,8 +165,9 @@ fmin, fmax, tmin, tmax = list(map(float,f.readline().split(' ')))
 # 	gao(index)
 
 from multiprocessing import Pool
-pool = Pool(10)
-head_coor = pool.map(gao, sorted(all_index)[:2000])
-head_coor = torch.tensor(head_coor)
-print (head_coor)
-torch.save(head_coor, str(test_dir.joinpath('face_crop_coor.torch')))
+if __name__ == '__main__':
+	pool = Pool(10)
+	head_coor = pool.map(gao, sorted(all_index)[:2000])
+	head_coor = torch.tensor(head_coor)
+	print (head_coor)
+	torch.save(head_coor, str(test_dir.joinpath('face_crop_coor.torch')))
