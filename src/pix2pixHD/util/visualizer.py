@@ -7,6 +7,7 @@ import time
 from . import util
 from . import html
 import scipy.misc
+from PIL import Image
 try:
     from StringIO import StringIO  # Python 2.7
 except ImportError:
@@ -46,7 +47,8 @@ class Visualizer():
                 except:
                     s = BytesIO()
                 # print(image_numpy)
-                scipy.misc.toimage(image_numpy).save(s, format="jpeg")
+                # scipy.misc.toimage(image_numpy).save(s, format="jpeg")
+                Image.fromarray(image_numpy).save(s, "JPEG")
                 # Create an Image object
                 img_sum = self.tf.Summary.Image(encoded_image_string=s.getvalue(), height=image_numpy.shape[0], width=image_numpy.shape[1])
                 # Create a Summary value
