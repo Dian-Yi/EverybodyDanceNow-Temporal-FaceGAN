@@ -66,16 +66,19 @@ This step is completed in Ubuntu 16.04
 * If you break the traning and want to continue last training, set `load_pretrain = './checkpoints/target/` in `./src/config/train_opt.py`
 
 * Run `transfer_temporal.py` and get results in `./result`
+* Get out.mp4 ffmpeg -framerate 23 -start_number 0 -i './results/images/%05d_synthesized_image.jpg' -c:v h264_nvenc out.mp4 -y
 
 #### Face enhancement network
 
 ![](/result/pic2.png)
 #### Train and use face enhancement network
+run error, cant solved
 * Run `python ./Face_GAN/prepare_Data` and check the results in `./Face_GAN/data/`.
 * Run `python ./Face_GAN/train_face_gan.py` train face enhancer and run`./Face_GAN/Inference.py` to gain results <br>
 
 
 #### Gain results
+not used
 * Run `python transfer_temporal.py` and make result pictures to video
 
 
