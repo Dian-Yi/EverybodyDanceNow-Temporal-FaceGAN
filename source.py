@@ -50,11 +50,11 @@ def gao(idx):
 			anno[key][:, 1] -= d
 		# print(max(x[21,1], x[24,1]) - b)
 
-	# img_path = img_dir.joinpath('%s.png'%idx)
-	# img = cv2.imread(str(img_path))[:, 420: -420]
-	# img = cv2.resize(img, (512, 512))
-	# cv2.imwrite(str(test_image_dir.joinpath('%s.png'%idx)), img)
-	# label = create_label_full((512, 512), anno)
+	img_path = img_dir.joinpath('%s.png'%idx)
+	img = cv2.imread(str(img_path))[:, 420: -420]
+	img = cv2.resize(img, (512, 512))
+	cv2.imwrite(str(test_image_dir.joinpath('%s.png'%idx)), img)
+	label = create_label_full((512, 512), anno)
 
 	# s = label.max(axis = 2)[:,:, np.newaxis]
 	# fig = plt.figure(1)
@@ -63,9 +63,9 @@ def gao(idx):
 	# ax.imshow((s[:,:, 0] * 255).astype(np.uint8))
 	# plt.show()
 
-	# label = torch.tensor(label).byte()
-	# label_path = test_label_dir.joinpath('%s.torch'% idx)
-	# torch.save(label, str(label_path))
+	label = torch.tensor(label).byte()
+	label_path = test_label_dir.joinpath('%s.torch'% idx)
+	torch.save(label, str(label_path))
 	# print(str(test_image_dir.joinpath('%s.png'%idx)))
 
 	# ================ Crop Face=====================
@@ -114,6 +114,18 @@ test_face_label_dir = test_dir.joinpath('test_face_label')
 test_face_label_dir.mkdir(exist_ok=True)
 all_index = []
 scale = []
+
+if len(os.listdir(img_dir)) < 400:
+	cap = cv2.VideoCapture(str(save_dir.joinpath('video.mp4')))
+	i = 0
+	while (cap.isOpened()):
+		flag, frame = cap.read()
+		if flag == False :
+			break
+		cv2.imwrite(str(img_dir.joinpath('{:012}.png'.format(i))), frame)
+		if i%100 == 0:
+			print('Has generated %d picetures'%i)
+		i += 1
 
 for anno_name in sorted(os.listdir(anno_dir))[: 1800]:
 	all_index.append(anno_name.split('_')[1])
